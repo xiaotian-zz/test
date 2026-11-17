@@ -12,10 +12,14 @@
 
 最终选定路线：**从 Steam 老版本资源包里把 Mesh / Material / Texture 抽出来，用 UnityPy 重新打一个自建 AssetBundle，放在 `Data` 目录，靠游戏原生加载器（`lnepoeakhib`）加载，再用 Frida 调 IL2CPP 完成实例化与定位。**
 
-当前进度：
-- 无贴图版 `xmas_ok`：加载 + 实例化 + 定位 → **已稳定，不闪退**。
-- 带贴图版：`xmas_bc`（texconv 重编码 DXT5）已产出未验证；`xmas_native`（搬原版 DXT1 原生字节）已产出 **但静态读回失败，尚未修好**。
-- Shop 组件：未开始。
+**当前状态：已全部跑通（2026-11-18）**
+
+- **外观**：`xmas_clone13`（144.5 MB）完整还原原版 `CHRISTMAS` 层级——1207 个 GameObject、98 个材质、213 张原版纹理、原版 Shader、粒子、SpeedTree、雪人、灯光、碰撞体 → 稳定，不闪退。
+- **商店**：两个摊位均可按 E 打开——`ny_bazaarStore_012`（博览会，`237.57, 2.57, 792.03`）、`nybaazar_012`（食品店，`237.75, 2.52, 789.00`）→ 已实测验证。
+- **最终方案**：bundle 内**不含** MonoBehaviour（包内脚本必崩），交互在运行时通过克隆 `Sea_bait_shop_12_interact` + 直接写 Shop 字段实现。
+- **交付包**：`f:\rea\deploy_xmas`，已推送 https://github.com/xiaotian-zz/test
+
+> 第 3~14 章是历史过程（含已废弃的 `xmas_ok` / `xmas_bc` / `xmas_native` / `xmas_clone1~17` 等尝试），仅作参考。**最终可用方案见第 15 章。**
 
 ---
 
